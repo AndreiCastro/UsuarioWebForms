@@ -4,12 +4,12 @@ using System.Data;
 using System.Data.SqlClient;
 using Usuario.WebForms.Model;
 
-namespace Usuario.WebForms.Helper
+namespace Usuario.WebForms.Data
 {
-    public class DalHelper : IDisposable
+    public class Conexao : IDisposable
     {
         private static SqlConnection sqlConnection;        
-        public DalHelper()
+        public Conexao()
         { }
 
         private static SqlConnection DbConnection()

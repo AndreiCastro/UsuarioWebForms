@@ -4,7 +4,7 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Web.UI.WebControls;
-using Usuario.WebForms.Helper;
+using Usuario.WebForms.Data;
 using Usuario.WebForms.Model;
 
 namespace Usuario.WebForms
@@ -135,7 +135,7 @@ namespace Usuario.WebForms
         private void RecarregarGrid()
         {
             DataTable dt = new DataTable();
-            dt = DalHelper.GetAllUsuarios();
+            dt = Conexao.GetAllUsuarios();
             UsuariosList = new List<Usuarios>();
             UsuariosList = (from DataRow dr in dt.Rows
                             select new Usuarios()
@@ -173,7 +173,7 @@ namespace Usuario.WebForms
                         Documento = txtDocumento.Text.Trim(),
                         DataNascimento = Convert.ToDateTime(txtDataNascimento.Text.Trim())
                     };
-                    DalHelper.Add(usuario);
+                    Conexao.Add(usuario);
                     LimparCampos();
                 }
                 catch (Exception)
@@ -203,7 +203,7 @@ namespace Usuario.WebForms
                             Documento = txtDocumento.Text.Trim(),
                             DataNascimento = Convert.ToDateTime(txtDataNascimento.Text.Trim())
                         };
-                        DalHelper.Update(usuario);
+                        Conexao.Update(usuario);
                         LimparCampos();
                     }
                     catch (Exception)
@@ -226,7 +226,7 @@ namespace Usuario.WebForms
             {
                 try
                 {
-                    DalHelper.Delete(Convert.ToInt32(txtId.Text.Trim()));
+                    Conexao.Delete(Convert.ToInt32(txtId.Text.Trim()));
                     LimparCampos();
                 }
                 catch (Exception)
